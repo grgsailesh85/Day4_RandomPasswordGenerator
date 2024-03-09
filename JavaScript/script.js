@@ -1,7 +1,8 @@
 const passwordBox = document.getElementById("password");
 const pwLen = 12;
+
 const myButton = document.getElementById("myBtn");
-const copyPw = documnet.getElementById("copy")
+const copyIcon = document.getElementById("copy");
 
 const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const lowerCase = "abcdefghijklmnopqrstuvwxyz";
@@ -28,12 +29,11 @@ myButton.addEventListener("click", () => {
   createPassword();
 });
 
-function copyPassword(){
-  passwordBox.select();
-  document.execCommand("copy");
-  window.getSelection().removeAllRanges();
+function copyText(){
+  const textToCopy = passwordBox.value;
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    alert("Password Copied Successfully");
+  });
 }
 
-copyPw.addEventListener("click", ()=>{
-  copyPassword();
-})
+copyIcon.addEventListener("click", copyText);
